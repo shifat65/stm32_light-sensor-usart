@@ -21,8 +21,9 @@ int main(void){
 	
 	uint16_t max_val = 0x0C00;
 	uint16_t min_val = 0x0700;
-		
+	
 	char data = 'b';
+	char old_status = data;
 	char rdata = 'b';
 	while(1){
 
@@ -41,19 +42,21 @@ int main(void){
 				else {
 					data = 'b';				
 				}
-	//sending data to another stm32 using usart	 
+	//sending data to another stm32 using usart if state changes
+			if(old_status!=data){
 			while(!(USART1->SR & USART_SR_TXE)){}
 			if((USART1->SR & USART_SR_TXE))
 			{	
 				GPIOA->ODR |=  GPIO_ODR_ODR2;
 				delay(10);
 				USART1->DR = data;
+				old_status = data;
 				GPIOA->ODR &= ~GPIO_ODR_ODR2;
 				delay(10);
 				
-			}
+			}}
 	//Receiving data from another stm32.
-			while(!(USART1->SR & USART_SR_RXNE)){}
+			//while(!(USART1->SR & USART_SR_RXNE)){}
 			
 			if((USART1->SR & USART_SR_RXNE))
 			{	
@@ -93,9 +96,9 @@ int main(void){
 
 	//checking loop
 			GPIOA->ODR |=  GPIO_ODR_ODR3;
-			delay(5);
+			delay(25);
 			GPIOA->ODR &= ~GPIO_ODR_ODR3;
-			delay(5);
+			delay(25);
 	
 	}
 	

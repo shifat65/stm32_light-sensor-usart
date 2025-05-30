@@ -304,7 +304,7 @@ Image Symbol Table
     [Anonymous Symbol]                       0x080004c4   Section        0  main.o(.text.delay_ms)
     [Anonymous Symbol]                       0x080004dc   Section        0  main.o(.text.gpio_setup)
     [Anonymous Symbol]                       0x0800056c   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x0800077c   Section        0  main.o(.text.systick_config)
+    [Anonymous Symbol]                       0x08000788   Section        0  main.o(.text.systick_config)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x20000060   Data         512  startup_stm32f10x_ld.o(HEAP)
     HEAP                                     0x20000060   Section      512  startup_stm32f10x_ld.o(HEAP)
@@ -467,10 +467,10 @@ Image Symbol Table
     delay                                    0x080004a9   Thumb Code    28  main.o(.text.delay)
     delay_ms                                 0x080004c5   Thumb Code    24  main.o(.text.delay_ms)
     gpio_setup                               0x080004dd   Thumb Code   142  main.o(.text.gpio_setup)
-    main                                     0x0800056d   Thumb Code   528  main.o(.text.main)
-    systick_config                           0x0800077d   Thumb Code    44  main.o(.text.systick_config)
-    Region$$Table$$Base                      0x080007a8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080007b8   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x0800056d   Thumb Code   538  main.o(.text.main)
+    systick_config                           0x08000789   Thumb Code    44  main.o(.text.systick_config)
+    Region$$Table$$Base                      0x080007b4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080007c4   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
 
@@ -482,9 +482,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000199
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x000007b8, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x000007c4, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000007b8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000007c4, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -562,17 +562,18 @@ Memory Map of the image
     0x080004c4   0x080004c4   0x00000018   Code   RO           16    .text.delay_ms      main.o
     0x080004dc   0x080004dc   0x0000008e   Code   RO            6    .text.gpio_setup    main.o
     0x0800056a   0x0800056a   0x00000002   PAD
-    0x0800056c   0x0800056c   0x00000210   Code   RO            2    .text.main          main.o
-    0x0800077c   0x0800077c   0x0000002c   Code   RO           10    .text.systick_config  main.o
-    0x080007a8   0x080007a8   0x00000010   Data   RO          221    Region$$Table       anon$$obj.o
+    0x0800056c   0x0800056c   0x0000021a   Code   RO            2    .text.main          main.o
+    0x08000786   0x08000786   0x00000002   PAD
+    0x08000788   0x08000788   0x0000002c   Code   RO           10    .text.systick_config  main.o
+    0x080007b4   0x080007b4   0x00000010   Data   RO          221    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080007b8, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080007c4, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x080007b8, Size: 0x00000660, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x080007c4, Size: 0x00000660, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -588,14 +589,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       952          0          0          0          0       3387   main.o
-        64         26        236          0       1536        836   startup_stm32f10x_ld.o
-       400          0          0          0          0       3009   system_stm32f10x.o
+       962          0          0          0          0       3477   main.o
+        64         26        236          0       1536        884   startup_stm32f10x_ld.o
+       400          0          0          0          0       3056   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      1428         26        252          0       1536       7232   Object Totals
+      1440         26        252          0       1536       7417   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        12          0          0          0          0          0   (incl. Padding)
+        14          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -641,15 +642,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1724         42        252          0       1632       7688   Grand Totals
-      1724         42        252          0       1632       7688   ELF Image Totals
-      1724         42        252          0          0          0   ROM Totals
+      1736         42        252          0       1632       7873   Grand Totals
+      1736         42        252          0       1632       7873   ELF Image Totals
+      1736         42        252          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1976 (   1.93kB)
+    Total RO  Size (Code + RO Data)                 1988 (   1.94kB)
     Total RW  Size (RW Data + ZI Data)              1632 (   1.59kB)
-    Total ROM Size (Code + RO Data + RW Data)       1976 (   1.93kB)
+    Total ROM Size (Code + RO Data + RW Data)       1988 (   1.94kB)
 
 ==============================================================================
 
